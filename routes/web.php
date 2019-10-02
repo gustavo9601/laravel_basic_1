@@ -84,7 +84,6 @@ Route::get('parametro-a-vista/{parametro?}', function ($parametro = 'Parametro d
     ]);
 
 
-
     /*
      * Otra forma de pasarle datos a la vista
     return view('vista1')->with('parametro', $parametro)
@@ -117,8 +116,31 @@ Route::get('pelicula-varias-restricciones/{id}/{titulo}', function ($id, $titulo
         'titulo' => '[a-zA-Z]+']); //valida los parametos con expresiones regulares de php
 
 
+//retornando en una vista dentro de una carpeta
+Route::get('contacto/{nombre?}/{apellido?}', function ($nombre = 'Gustavo', $apellido = 'Marquez') {
+
+
+    $arreglo = [
+      'naranja', 'pera', 'sandia', 'pina'
+    ];
+
+    //contacto.contacto   //directorio.archivo
+    return view('contacto.contacto')->with('nombre', $nombre)
+        ->with('apellido', $apellido)
+        ->with('frutas', $arreglo);
+});
+
+
+
+//Llamando vista que hereda de un template con section y yield
+Route::get('/hijo-vista', function (){
+   return view('layout.hijo');
+});
+
 //Colocando nombre a las rutas, para poder ser accesadas o usadas por otras rutas
 Route::get('/index/{section?}', ["as" => "nombre", "uses" => "PruebasController@index"]);
 
 //redirecciona a la ruta que anteriormente se llamo
 return redirect()->route("nombre", array("section" => "Contenido de un parametro"));
+
+
