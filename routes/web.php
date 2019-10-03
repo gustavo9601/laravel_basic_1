@@ -121,7 +121,7 @@ Route::get('contacto/{nombre?}/{apellido?}', function ($nombre = 'Gustavo', $ape
 
 
     $arreglo = [
-      'naranja', 'pera', 'sandia', 'pina'
+        'naranja', 'pera', 'sandia', 'pina'
     ];
 
     //contacto.contacto   //directorio.archivo
@@ -131,16 +131,62 @@ Route::get('contacto/{nombre?}/{apellido?}', function ($nombre = 'Gustavo', $ape
 });
 
 
-
 //Llamando vista que hereda de un template con section y yield
-Route::get('/hijo-vista', function (){
-   return view('layout.hijo');
+Route::get('/hijo-vista', function () {
+    return view('layout.hijo');
 });
 
 //Colocando nombre a las rutas, para poder ser accesadas o usadas por otras rutas
 Route::get('/index/{section?}', ["as" => "nombre", "uses" => "PruebasController@index"]);
 
+
+
+//Redireccion
 //redirecciona a la ruta que anteriormente se llamo
-return redirect()->route("nombre", array("section" => "Contenido de un parametro"));
+//return redirect()->route("nombre", array("section" => "Contenido de un parametro"));
 
 
+/*
+ * ==========================================
+ * ==========================================
+ * ==========================================
+ *
+ *
+ *
+*/
+
+//Rutas con controlador
+
+//usamos la ruta frutas
+//llamos al controlador FrutasController
+//llamos la funcion index
+Route::get('/frutas', 'FrutasController@index');
+
+Route::get('/naranjas', 'FrutasController@naranjas');
+//con el as le damos un nombre a la ruta, desde la cual se puede acceder solo con el nombre
+Route::get('/peras', [
+    'uses'=>'FrutasController@peras',
+    'as' => 'peritas'
+]);
+
+
+//Ruta que usa un middleware
+//en un array le pasamos los indices, el midelware que usara y con uses el controlador y funcion a ejecutarr
+Route::get('/juegos/{admin?}', [
+    'middleware' => 'EsAdmin',
+    'uses' => 'JuegosController@index'
+]);
+
+
+//Grupo de rutas, a los cuales se les coloca a todas un pregijo
+//en un array le especficamos el prefijo
+//dentro de la funcion especificamos la otras rutas
+Route::group(['prefix' => 'heroes'], function () {
+
+    //todas las rutas quedarian
+    // /heroes/....
+    Route::get('/superman', function(){return "Superman";});
+    Route::get('/batman', function(){return "Batman";});
+    Route::get('/hombre-arana/{telarana}', function($telarana){return "Hombre arana con:  " . $telarana;});
+
+});
