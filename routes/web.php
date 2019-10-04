@@ -190,3 +190,8 @@ Route::group(['prefix' => 'heroes'], function () {
     Route::get('/hombre-arana/{telarana}', function($telarana){return "Hombre arana con:  " . $telarana;});
 
 });
+
+
+//Ruta de formulario
+Route::get('/formularios', 'FormulariosController@loadFormulario1');
+Route::post('/formularios', 'FormulariosController@recibirFormulario');
