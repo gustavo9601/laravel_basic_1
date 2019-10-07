@@ -140,7 +140,6 @@ Route::get('/hijo-vista', function () {
 Route::get('/index/{section?}', ["as" => "nombre", "uses" => "PruebasController@index"]);
 
 
-
 //Redireccion
 //redirecciona a la ruta que anteriormente se llamo
 //return redirect()->route("nombre", array("section" => "Contenido de un parametro"));
@@ -165,7 +164,7 @@ Route::get('/frutas', 'FrutasController@index');
 Route::get('/naranjas', 'FrutasController@naranjas');
 //con el as le damos un nombre a la ruta, desde la cual se puede acceder solo con el nombre
 Route::get('/peras', [
-    'uses'=>'FrutasController@peras',
+    'uses' => 'FrutasController@peras',
     'as' => 'peritas'
 ]);
 
@@ -185,9 +184,15 @@ Route::group(['prefix' => 'heroes'], function () {
 
     //todas las rutas quedarian
     // /heroes/....
-    Route::get('/superman', function(){return "Superman";});
-    Route::get('/batman', function(){return "Batman";});
-    Route::get('/hombre-arana/{telarana}', function($telarana){return "Hombre arana con:  " . $telarana;});
+    Route::get('/superman', function () {
+        return "Superman";
+    });
+    Route::get('/batman', function () {
+        return "Batman";
+    });
+    Route::get('/hombre-arana/{telarana}', function ($telarana) {
+        return "Hombre arana con:  " . $telarana;
+    });
 
 });
 
@@ -195,3 +200,20 @@ Route::group(['prefix' => 'heroes'], function () {
 //Ruta de formulario
 Route::get('/formularios', 'FormulariosController@loadFormulario1');
 Route::post('/formularios', 'FormulariosController@recibirFormulario');
+
+
+//Ruta de Notas, que usa el Query Builder
+Route::get('/notas', 'NotesController@getIndex');
+
+//ruta de vista del formulario
+Route::get('/notas/nueva', 'NotesController@getSaveNote');
+//Ruta de vista que recibe la peticion de envio del formulario
+Route::post('/notas/nueva', 'NotesController@saveNote');
+//Ruta que obtiene por id una nota
+Route::get('/notas/{id}', 'NotesController@getNoteId');
+//Ruta para mostrar el formulario actualizar una nota por id
+Route::get('/notas/actualizar/{id}', 'NotesController@getFormularioActualizarNota');
+//Ruta para actualizar la informacion que viene del formulario por id
+Route::post('/notas/actualizar/{id}', 'NotesController@actualizarNote');
+//Ruta para eliminar por id
+Route::get('/notas/eliminar/{id}', 'NotesController@deleteNoteId');
