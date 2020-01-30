@@ -183,6 +183,11 @@ Route::get('/middleware-controller/{admin?}', 'middlewareInControllerController@
 Route::get('/inyeccion-clase', 'ClaseHijoInjectionController@showMessagesFromHijo');
 
 
+
+//Ruta que recibe un post y valida los campos a recibir
+Route::post('/validacion-controller', 'ValidacionEntradasController@store');
+
+
 //Grupo de rutas, a los cuales se les coloca a todas un pregijo
 //en un array le especficamos el prefijo
 //dentro de la funcion especificamos la otras rutas
