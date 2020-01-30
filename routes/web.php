@@ -172,9 +172,12 @@ Route::get('/peras', [
 //Ruta que usa un middleware
 //en un array le pasamos los indices, el midelware que usara y con uses el controlador y funcion a ejecutarr
 Route::get('/juegos/{admin?}', [
-    'middleware' => 'EsAdmin',
+    'middleware' => 'EsAdmin',  // ['EsAdmin', 'OtroMiddleware']  cuando son varios middleware
     'uses' => 'JuegosController@index'
 ]);
+
+//Ruta que tiene un middleware en el Controlador
+Route::get('/middleware-controller/{admin?}', 'middlewareInControllerController@test');
 
 
 //Grupo de rutas, a los cuales se les coloca a todas un pregijo

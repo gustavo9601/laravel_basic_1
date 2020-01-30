@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 class FrutasController extends Controller
+
+
 {
+
     //Accion que devuelva una vista
-
-
     public function index()
     {
         //retornamos una vista
