@@ -179,6 +179,9 @@ Route::get('/juegos/{admin?}', [
 //Ruta que tiene un middleware en el Controlador
 Route::get('/middleware-controller/{admin?}', 'middlewareInControllerController@test');
 
+// Ruta que inyecta una clase en otra, en el constructor
+Route::get('/inyeccion-clase', 'ClaseHijoInjectionController@showMessagesFromHijo');
+
 
 //Grupo de rutas, a los cuales se les coloca a todas un pregijo
 //en un array le especficamos el prefijo
