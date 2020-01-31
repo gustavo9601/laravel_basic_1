@@ -19,7 +19,7 @@ class Post extends Model
         'body'
     ];
 
-    // el contrario de fillable, es como una black list, para que no se editen ni se expongan
+    // el contrario de fillable, es como una black list, para que no se editen
     protected $guarded = [
         'deleted',
     ];

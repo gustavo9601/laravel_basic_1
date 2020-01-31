@@ -228,3 +228,26 @@ Route::get('/notas/actualizar/{id}', 'NotesController@getFormularioActualizarNot
 Route::post('/notas/actualizar/{id}', 'NotesController@actualizarNote');
 //Ruta para eliminar por id
 Route::get('/notas/eliminar/{id}', 'NotesController@deleteNoteId');
+
+
+
+
+
+
+/*
+==========================================================
+============================================================
+============================================================
+*/
+
+// Pattern que valida todas las variables get, de todas las ritas hacia abajo, para que sea numero
+Route::pattern('id', '\d+');
+
+Route::get('/posts', 'PostController@index');
+Route::get('/posts/{id}', 'PostController@show');
+Route::post('/posts/store',
+    ['uses' => 'PostController@store']
+);
+Route::delete('/posts/destroy/{id}', 'PostController@destroy');
+
+
