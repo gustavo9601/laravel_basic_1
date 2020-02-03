@@ -27,5 +27,12 @@
         <env name="CACHE_DRIVER" value="array"/>
         <env name="SESSION_DRIVER" value="array"/>
         <env name="QUEUE_DRIVER" value="sync"/>
+
+        <!-- Configuracion entorno BD Pruebas -->
+        <env name="DB_HOST" value="LOCALHOST"/>
+        <env name="DB_DATABASE" value="laravel_2_test"/>
+        <env name="DB_USERNAME" value="root"/>
+        <env name="DB_PASSWORD" value=""/>
+
     </php>
 </phpunit>

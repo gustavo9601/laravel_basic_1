@@ -9,15 +9,13 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 class ExampleTest extends TestCase
 {
-    /**
-     * A basic test example.
-     *
-     * @return void
-     */
-    public function testBasicTest()
-    {
-        $response = $this->get('/');
 
-        $response->assertStatus(200);
+    //palabra al inicio de la funcion test
+    public function testSinglePostPageExists(){
+
+         $response = $this->get('/posts/1');
+         $response->assertStatus(200);
+         $response->assertSee('id');
     }
+
 }
